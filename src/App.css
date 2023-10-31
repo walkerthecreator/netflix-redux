@@ -1,0 +1,21 @@
+.header{
+    height: 90vh;
+    width: 99vw;
+    margin-bottom: 100px;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.header img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.header-data{
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    width: 40vw;
+}
+
