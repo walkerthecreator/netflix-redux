@@ -10,6 +10,8 @@ function App() {
 
   return (
     <>
+    <div>
+
         <NavBar />
         <Routes>
             <Route path='/' element={ <HomePage/> }></Route>
@@ -17,6 +19,7 @@ function App() {
             <Route path='/tv' element={ <Tv /> }></Route>
             <Route path='/browse' index element={ <Home /> }></Route>
         </Routes> 
+    </div>
     </>
   )
 }

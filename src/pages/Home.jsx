@@ -1,54 +1,29 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { fetchMovies, selectDiscoverMovie } from "../feature/movieSlice"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'
-import Cards from "../components/Card";
-import axios from "axios";
-import { TOKEN } from "../utils/request";
+import { fetchMovies, fetchTopRated, selectDiscoverMovie, selectTopRated } from "../feature/movieSlice"
 import Header from "../components/Header";
+import Row from "../components/Row";
+import { useSelector } from "react-redux";
 
 export default function Home() {
-    const dispatch = useDispatch() //triggering an action
-    const movieData = useSelector(selectDiscoverMovie) //getting data from store
 
-    useEffect(() => {
-        dispatch(fetchMovies())
-    }, [])
+    // const movieData = useSelector(selectDiscoverMovie)
+    // const randomMovie = movieData.data?.results[Math.floor(Math.random() * 20)]
 
-    const randomMovie = movieData.data?.results[Math.floor(Math.random() * 20)]
+    return (
+    <>
 
-    return (<>
-
-        <Header data={ randomMovie }></Header>
+        {/* <Header data={ randomMovie }></Header> */}
 
         {
-            (movieData.status == "idle") ?
-                <div>
-                    <Swiper
-                        spaceBetween={30}
-                        slidesPerView={5}
-                        onSlideChange={() => console.log('slide change')}
-                        onSwiper={(swiper) => console.log(swiper)}
-                    >
-                            {
-                                movieData.data?.results.map((item, index) => {
-                                    return <SwiperSlide key={index}>
-                                        <Cards item={item}></Cards>
-                                    </SwiperSlide>
-                            })}
-                    </Swiper>
-                </div>
+            // (movieData.status == "idle") ?
 
-
-
-
-                :
-                <h1>loading</h1>
+                <>
+                    <Row selector={ selectDiscoverMovie } actions={ fetchMovies } title={"Discover Movies"} />
+                    <Row selector={ selectTopRated } actions={ fetchTopRated  } title={"Top Rated Movies"} />
+                </>
+                // :
+                // <h1>loading</h1>
         }
 
-        {
 
-        }
     </>)
 }
