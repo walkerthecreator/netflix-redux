@@ -15,7 +15,8 @@ export default function Header({ data }){
                     <span> ({ data?.vote_count })</span>
                     <span> { data?.original_language }</span>
                     <p>{ data?.overview  }</p>
-                    <Button variant="danger">Watch</Button>
+                    <Button variant="danger" className="mx-2">Play Now</Button>
+                    <Button variant="light">More info</Button>
                 </div>
                 <div id="gradient"></div>
             </div>

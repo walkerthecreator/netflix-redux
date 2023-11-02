@@ -3,7 +3,6 @@ import axios from "axios";
 import requests, { TOKEN } from "../utils/request";
 
 
-
 export const fetchNetflixOriginals = createAsyncThunk(
     "tv/fetchNetflixOriginals" , 
     async() => {
@@ -11,6 +10,20 @@ export const fetchNetflixOriginals = createAsyncThunk(
         return response.data
     }
 )
+
+export const fetchDiscoverTv = createAsyncThunk(
+    "tv/fetchDiscoverTv" , 
+    async() => {
+        const response = await axios.get(requests.discover("tv")  , { headers : { Authorization : TOKEN } })
+        return response.data
+    }
+)
+
+export const fetchTopRatedTv = createAsyncThunk('tv/fetchToprated' , 
+async ()=>{
+    const response = await axios.get(requests.topRated("tv")  , { headers : { Authorization : TOKEN } })
+    return response.data
+})
 
 
 const initial = {
@@ -48,8 +61,32 @@ const tvSlice = createSlice({
         state.netflixOriginals.data = action.payload
         state.netflixOriginals.status = "idle"
     })
+    .addCase(fetchTopRatedTv.pending , (state) => {
+        state.topRatedTv.status = "loading"
+    } )
+    .addCase( fetchTopRatedTv.rejected , (state , action) => {
+        state.topRatedTv.error = action.error.message
+        state.topRatedTv.status = "idle"
+    } )
+    .addCase(fetchTopRatedTv.fulfilled , (state , action)=>{
+        state.topRatedTv.data = action.payload
+        state.topRatedTv.status = "idle"
+    })
+    .addCase(fetchDiscoverTv.pending , (state) => {
+        state.discoverTv.status = "loading"
+    } )
+    .addCase( fetchDiscoverTv.rejected , (state , action) => {
+        state.discoverTv.error = action.error.message
+        state.discoverTv.status = "idle"
+    } )
+    .addCase(fetchDiscoverTv.fulfilled , (state , action)=>{
+        state.discoverTv.data = action.payload
+        state.discoverTv.status = "idle"
+    })
 })
 
 export default tvSlice.reducer
 
 export const selectNetflixOriginals = state => state.tv.netflixOriginals
+export const selectTopRatedTv = state => state.tv.topRatedTv
+export const selectDiscoverTv = state => state.tv.discoverTv

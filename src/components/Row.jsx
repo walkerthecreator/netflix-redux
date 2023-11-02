@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Cards from './Card';
 import { useEffect } from 'react';
 
-function Row({ selector , actions , title }){
+function Row({ selector , actions , title , type }){
 
     const movieData = useSelector(selector)
     const dispatch = useDispatch()
@@ -30,7 +30,7 @@ function Row({ selector , actions , title }){
                             {
                                 movieData.data?.results.map((item, index) => {
                                     return <SwiperSlide key={index}>
-                                        <Cards item={item}></Cards>
+                                        <Cards item={item} type={type}></Cards>
                                     </SwiperSlide>
                             })}
                     </Swiper>
