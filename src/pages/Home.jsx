@@ -1,27 +1,36 @@
 import { fetchMovies, fetchTopRated, selectDiscoverMovie, selectTopRated } from "../feature/movieSlice"
 import Header from "../components/Header";
 import Row from "../components/Row";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchNetflixOriginals, selectNetflixOriginals } from "../feature/tvSlice";
+import { useEffect } from "react";
 
 export default function Home() {
 
-    // const movieData = useSelector(selectDiscoverMovie)
-    // const randomMovie = movieData.data?.results[Math.floor(Math.random() * 20)]
+    const movieData = useSelector(selectNetflixOriginals)
+
+const dispatch = useDispatch()
+
+    useEffect(()=>{
+      dispatch(fetchNetflixOriginals())
+    } ,[])
+
+    console.log(movieData)
+
+
 
     return (
     <>
 
-        {/* <Header data={ randomMovie }></Header> */}
+        <Header data={ movieData.data?.results[Math.floor(Math.random() * 20)] }></Header>
 
         {
-            // (movieData.status == "idle") ?
 
                 <>
                     <Row selector={ selectDiscoverMovie } actions={ fetchMovies } title={"Discover Movies"} />
                     <Row selector={ selectTopRated } actions={ fetchTopRated  } title={"Top Rated Movies"} />
+                    {/* <Row selector={ selectTvTopRated } actions={ fetchTopRated  } title={"Top Rated Movies"} /> */}
                 </>
-                // :
-                // <h1>loading</h1>
         }
 
 

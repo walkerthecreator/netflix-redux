@@ -28,20 +28,22 @@ const init = {
 
 
 export const fetchMovies = createAsyncThunk(
-    'movie/discoverMovies', 
+    'movie/fetchMovies', 
     async () => {
-        const response = await axios.get(requests.discoverMovies  , { headers : { Authorization : TOKEN } })
+        const response = await axios.get(requests.discover("movie")  , { headers : { Authorization : TOKEN } })
         return response.data
     }
 )
 
 export const fetchTopRated = createAsyncThunk(
-    'movie/topRated' ,
+    'movie/fetchTopRated' ,
     async () => {
-        const response = await axios.get(requests.topRatedMovies  , { headers : { Authorization : TOKEN } })
+        const response = await axios.get(requests.topRated("movie")  , { headers : { Authorization : TOKEN } })
         return response.data
     }
 )
+
+
 
 
 
@@ -78,5 +80,5 @@ const movieSlice = createSlice({
 
 export default movieSlice.reducer
 
-export const selectDiscoverMovie = (state) => state.discoverMovies
-export const selectTopRated = (state) => state.topRatedMovies
+export const selectDiscoverMovie = (state) => state.movie.discoverMovies
+export const selectTopRated = (state) => state.movie.topRatedMovies

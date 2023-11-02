@@ -3,10 +3,15 @@ export const TOKEN = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxY2U1YTc4ZDY1YmQzOT
 
 
 const requests = {
-    discoverMovies : 'https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc' , 
-    discoverTv : 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc' ,
-    netflixOriginal: "https://api.themoviedb.org/3/network/213" , 
-    topRatedMovies : 'https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1'
+    discover : (type) =>  `https://api.themoviedb.org/3/discover/${type}?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc` , 
+    // discoverTv : 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc' ,
+    netflixOriginals: 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_networks=213', 
+    topRated :(type) => `https://api.themoviedb.org/3/${ type }/top_rated?language=en-US&page=1` ,
+}
+
+export const keys = {
+    tv : "tv" ,
+    movie : "movie"
 }
 
 export default requests
