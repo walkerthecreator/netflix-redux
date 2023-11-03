@@ -7,6 +7,7 @@ const requests = {
     // discoverTv : 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc' ,
     netflixOriginals: 'https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=1&sort_by=popularity.desc&with_networks=213', 
     topRated :(type) => `https://api.themoviedb.org/3/${ type }/top_rated?language=en-US&page=1` ,
+    tvDetails :(id) => `https://api.themoviedb.org/3/tv/${id}?language=en-US`
 }
 
 export const keys = {

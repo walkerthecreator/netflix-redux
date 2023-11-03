@@ -1,9 +1,23 @@
 /* eslint-disable react/prop-types */
 import { Button  } from "react-bootstrap"
 import Badge from "react-bootstrap/Badge"
+import Model from "./Popup"
+import { useEffect } from "react"
+import { useDispatch } from "react-redux"
+import { fetchTvDetails } from "../feature/tvSlice"
 
 
 export default function Header({ data }){
+
+    const dispatch = useDispatch()
+
+    function handleFetch(){
+        if(data) dispatch(fetchTvDetails(data?.id))
+    }
+
+    useEffect(()=>{
+        handleFetch()
+    } , [data])
     
     return(
         <>
@@ -16,7 +30,7 @@ export default function Header({ data }){
                     <span> { data?.original_language }</span>
                     <p>{ data?.overview  }</p>
                     <Button variant="danger" className="mx-2">Play Now</Button>
-                    <Button variant="light">More info</Button>
+                    <Model ></Model>
                 </div>
                 <div id="gradient"></div>
             </div>

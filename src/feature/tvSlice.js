@@ -19,6 +19,14 @@ export const fetchDiscoverTv = createAsyncThunk(
     }
 )
 
+export const fetchTvDetails = createAsyncThunk(
+    "tv/fetchTvDetails" , 
+    async(id) => {
+        const response = await axios.get(requests.tvDetails(id)  , { headers : { Authorization : TOKEN } })
+        return response.data
+    }
+)
+
 export const fetchTopRatedTv = createAsyncThunk('tv/fetchToprated' , 
 async ()=>{
     const response = await axios.get(requests.topRated("tv")  , { headers : { Authorization : TOKEN } })
@@ -40,6 +48,11 @@ const initial = {
     topRatedTv : {
         data : null ,
         status : "idle" ,
+        error : null
+    } ,
+    tvDetails : {
+        data: null , 
+        status : "idle" , 
         error : null
     }
 }
@@ -83,6 +96,18 @@ const tvSlice = createSlice({
         state.discoverTv.data = action.payload
         state.discoverTv.status = "idle"
     })
+    .addCase(fetchTvDetails.pending , (state) => {
+        state.tvDetails.status = "loading"
+    } )
+    .addCase( fetchTvDetails.rejected , (state , action) => {
+        state.tvDetails.error = action.error.message
+        state.tvDetails.status = "idle"
+    } )
+    .addCase(fetchTvDetails.fulfilled , (state , action)=>{
+        state.tvDetails.data = action.payload
+        state.tvDetails.status = "idle"
+    })
+
 })
 
 export default tvSlice.reducer
@@ -90,3 +115,4 @@ export default tvSlice.reducer
 export const selectNetflixOriginals = state => state.tv.netflixOriginals
 export const selectTopRatedTv = state => state.tv.topRatedTv
 export const selectDiscoverTv = state => state.tv.discoverTv
+export const selectTvDetails = state => state.tv.tvDetails

@@ -17,10 +17,6 @@ const dispatch = useDispatch()
       dispatch(fetchNetflixOriginals())
     } ,[])
 
-    console.log(movieData)
-
-
-
     return (
     <>
 
