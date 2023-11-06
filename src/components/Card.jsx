@@ -1,14 +1,13 @@
 import Card from 'react-bootstrap/Card';
-import { popupData, togglePopup } from '../feature/commonSlice';
+import { fetchDetails, togglePopup } from '../feature/commonSlice';
 import { useDispatch } from 'react-redux';
-import { fetchTvDetails } from '../feature/tvSlice';
 
 function Cards({ item , type }) {
 
     const dispatch = useDispatch()
 
         function details(){
-            dispatch(fetchTvDetails(item.id))
+            dispatch(fetchDetails({type : type , id : item.id}))
             dispatch(togglePopup()) 
         }
 

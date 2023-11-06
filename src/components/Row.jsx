@@ -17,7 +17,7 @@ function Row({ selector , actions , title , type }){
 
     return (<>
         <div className='my-3'>
-                <h2 className='mx-4'>{ title  }</h2>
+                <h2 className='mx-4'>{ title }</h2>
 
                         <Swiper
                         modules={[Navigation]}

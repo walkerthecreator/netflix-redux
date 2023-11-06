@@ -11,10 +11,8 @@ export default function Home() {
     const dispatch = useDispatch()
 
     let movieData  = useSelector(selectNetflixOriginals)
-    console.log(movieData)
     let randomIndex = Math.floor(Math.random() * 20); 
 
-    // console.log("home" , movieData.data?.results[randomIndex])
 
     useEffect(()=>{
       dispatch(fetchNetflixOriginals())
@@ -24,7 +22,10 @@ export default function Home() {
     <>
 
         <Header data={ movieData.data?.results[randomIndex] } ></Header>
-            {/* <Header data={ movieData } ></Header> */}
+
+        <div className="container-fluid py-3">
+
+
         {
 
                 <>
@@ -35,6 +36,7 @@ export default function Home() {
                 </>
         }
 
+        </div>
 
     </>)
 }
