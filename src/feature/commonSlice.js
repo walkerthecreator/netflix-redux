@@ -12,13 +12,11 @@ const common = createSlice({
     reducers : {
         popupData : (state , action ) => {
             state.data = action.payload
+            state.isOpen = true
         } , 
         togglePopup : (state) => {
             state.isOpen = !state.isOpen
         } , 
-
-
-
     } , 
     extraReducers : {}
 })

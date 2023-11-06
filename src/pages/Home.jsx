@@ -8,10 +8,13 @@ import { keys } from "../utils/request";
 
 
 export default function Home() {
+    const dispatch = useDispatch()
 
-    const movieData = useSelector(selectNetflixOriginals)
+    let movieData  = useSelector(selectNetflixOriginals)
+    console.log(movieData)
+    let randomIndex = Math.floor(Math.random() * 20); 
 
-const dispatch = useDispatch()
+    // console.log("home" , movieData.data?.results[randomIndex])
 
     useEffect(()=>{
       dispatch(fetchNetflixOriginals())
@@ -20,8 +23,8 @@ const dispatch = useDispatch()
     return (
     <>
 
-        <Header data={ movieData.data?.results[Math.floor(Math.random() * 20)] }></Header>
-
+        <Header data={ movieData.data?.results[randomIndex] } ></Header>
+            {/* <Header data={ movieData } ></Header> */}
         {
 
                 <>

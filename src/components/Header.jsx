@@ -3,20 +3,24 @@ import { Button  } from "react-bootstrap"
 import Badge from "react-bootstrap/Badge"
 import Model from "./Popup"
 import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { fetchTvDetails } from "../feature/tvSlice"
-
+import { useDispatch, useSelector } from "react-redux"
+import { fetchTvDetails, selectTvDetails } from "../feature/tvSlice"
 
 export default function Header({ data }){
-
     const dispatch = useDispatch()
 
-    function handleFetch(){
-        if(data) dispatch(fetchTvDetails(data?.id))
-    }
+    const headerInfo = useSelector(selectTvDetails)
+
+    function handleFetch(data){
+        dispatch(fetchTvDetails(data.id))
+    } 
+
+    // console.log("header" , data )
 
     useEffect(()=>{
-        handleFetch()
+        if(data){
+            handleFetch(data)
+        }
     } , [data])
     
     return(
@@ -29,11 +33,12 @@ export default function Header({ data }){
                     <span> ({ data?.vote_count })</span>
                     <span> { data?.original_language }</span>
                     <p>{ data?.overview  }</p>
-                    <Button variant="danger" className="mx-2">Play Now</Button>
+                    <Button variant="danger" className="mx-2" >Play Now</Button>
                     <Model ></Model>
                 </div>
                 <div id="gradient"></div>
             </div>
+
         </>
     )
 }
