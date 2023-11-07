@@ -4,7 +4,7 @@ import Badge from "react-bootstrap/Badge"
 import Model from "./Popup"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { selectDetails , fetchDetails } from "../feature/commonSlice"
+import { selectDetails , fetchDetails, fetchVideos } from "../feature/commonSlice"
 
 export default function Header({ data }){
     const dispatch = useDispatch()
@@ -12,13 +12,14 @@ export default function Header({ data }){
     const headerInfo = useSelector(selectDetails)
 
     function handleFetch(data){
-        console.log("tv" , data.id)
         dispatch(fetchDetails({type : "tv" , id :  data.id}))
+        dispatch(fetchVideos({ type : "tv" , id : data.id }))
     } 
 
     useEffect(()=>{
         if(data){
             handleFetch(data)
+            
         }
     } , [data])
     

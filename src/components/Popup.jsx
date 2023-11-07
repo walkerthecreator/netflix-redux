@@ -1,11 +1,13 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import {  selectDetails, togglePopup } from '../feature/commonSlice';
+import {  fetchVideos, selectDetails, togglePopup } from '../feature/commonSlice';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import requests, { TOKEN } from '../utils/request';
 import Cards from './Card';
+import { Badge } from 'react-bootstrap';
+import VideoPlayer from './VideoPlayer';
 
 function Model() {
 
@@ -17,15 +19,15 @@ function Model() {
     const [recommend , setRecommend] = useState(null)
 
     async function fetchRecommendation(){
-        const response = await axios.get(requests.getRecommendation("movie" , details.data?.id) , { headers : { Authorization : TOKEN } })
+        const response = await axios.get(requests.getRecommendation("movie" , details?.id) , { headers : { Authorization : TOKEN } })
         setRecommend(response.data)
     }
 
-    // console.log("popup" , details)
-
     useEffect(()=>{
         if(details){
-            fetchRecommendation()
+            fetchRecommendation(details)
+            // fetchVideos({ type : type })
+
         }   
     }, [details])
     
@@ -51,11 +53,17 @@ function Model() {
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg" >
             {
-                details?.original_name || details?.original_title
+                details?.name
             }
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
+
+            <VideoPlayer></VideoPlayer>
+
+            <p>{ details?.overview }</p> 
+                <Badge varient="light"> Season {details?.number_of_seasons} </Badge>
 
 
 
@@ -69,6 +77,7 @@ function Model() {
                 }) 
             }
             </div>
+
 
             
         </Modal.Body>
