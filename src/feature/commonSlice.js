@@ -6,7 +6,8 @@ const init = {
     popup: {
         data : null ,
         isOpen : false , 
-        status : "idle"
+        status : "idle" ,
+        platform : "tv"
     } ,
     videos : {
         data : null ,
@@ -43,6 +44,12 @@ const common = createSlice({
         togglePopup : (state) => {
             state.isOpen = !state.isOpen
         } , 
+
+        setPlatform : (state , action) => {
+            state.popup.platform = action.payload ;
+        }
+
+
     } , 
         extraReducers : (builder) => builder
             .addCase(fetchDetails.pending , (state) => {
@@ -67,7 +74,7 @@ const common = createSlice({
     }) 
 })
 
-export const { popupData , togglePopup  } = common.actions
+export const { setPlatform , togglePopup  } = common.actions
 
 export default common.reducer
 

@@ -20,7 +20,7 @@ export default function VideoPlayer(){
     return(
         <>
         <div>
-        <iframe id="ytplayer" type="text/html" width="720" height="405"
+        <iframe id="ytplayer" type="text/html" width="1100" height="500"
         src={`https://www.youtube.com/embed/${ videos?.key }?autoplay=1`}
         frameBorder="0" allowfullscreen />
         </div>

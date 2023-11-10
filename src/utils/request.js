@@ -8,7 +8,8 @@ const requests = {
     topRated :(type) => `https://api.themoviedb.org/3/${ type }/top_rated?language=en-US&page=1` ,
     getDetails :(type , id) => `https://api.themoviedb.org/3/${ type  }/${id}?language=en-US`,
     getRecommendation : (type , id ) => `https://api.themoviedb.org/3/${ type }/${ id }/recommendations?language=en-US&page=1` ,
-    getVideos : (type , id) => `https://api.themoviedb.org/3/${type}/${ id }/videos`
+    getVideos : (type , id) => `https://api.themoviedb.org/3/${type}/${ id }/videos`,
+    getCredits : (type , id ) => `https://api.themoviedb.org/3/${ type }/${ id }/credits`
 }
 
 export const keys = {
