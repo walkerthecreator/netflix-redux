@@ -37,3 +37,13 @@ body{
 .header-data{
     z-index: 12;
 }
+
+.custom-modal .modal-content{
+    color: white;
+    background-color: black;
+}
+
+.modal-header button{
+    background-color : white;
+    border-radius: 80%;
+}

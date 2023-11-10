@@ -14,10 +14,10 @@ function App() {
 
         <NavBar />
         <Routes>
-            <Route path='/' element={ <HomePage/> }></Route>
+            <Route path='/home' element={ <HomePage/> }></Route>
             <Route path='/movie' element={ <Movie />}></Route>
             <Route path='/tv' element={ <Tv /> }></Route>
-            <Route path='/browse' index element={ <Home /> }></Route>
+            <Route path='/' index element={ <Home /> }></Route>
         </Routes> 
     </div>
     </>

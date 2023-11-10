@@ -17,11 +17,11 @@ function Row({ selector , actions , title , type }){
 
     return (<>
         <div className='my-3'>
-                <h2 className='mx-4'>{ title }</h2>
+                <h2 className='mx-4 my-3'>{ title }</h2>
 
                         <Swiper
                         modules={[Navigation]}
-                        spaceBetween={30}
+                        spaceBetween={40}
                         slidesPerView={5}
                         navigation
                     >

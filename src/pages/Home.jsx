@@ -23,7 +23,7 @@ export default function Home() {
 
         <Header data={ movieData.data?.results[randomIndex] } ></Header>
 
-        <div className="container-fluid py-3">
+        <div className="container-fluid py-3 px-3">
 
 
         {

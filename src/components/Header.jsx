@@ -28,11 +28,11 @@ export default function Header({ data }){
             <div className="header">
                 <img src={`https://image.tmdb.org/t/p/w1280/${ headerInfo?.backdrop_path }`} title={ headerInfo?.original_name } />
                 <div className="header-data">
-                    <h1>{headerInfo?.original_name || headerInfo?.original_title}</h1>
+                    <h1 className="fw-bold">{headerInfo?.original_name || headerInfo?.original_title}</h1>
                     <Badge bg="warning">{ headerInfo?.vote_average}</Badge>
                     <span> ({ headerInfo?.vote_count })</span>
                     <span> { headerInfo?.original_language }</span>
-                    <p>{ headerInfo?.overview  }</p>
+                    <p className="mt-3">{ headerInfo?.overview  }</p>
                     <Button variant="danger" className="mx-2" >Play Now</Button>
                     <Model ></Model>
                 </div>
